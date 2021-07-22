@@ -18,7 +18,7 @@ export class StockExchangesComponent implements OnInit {
     this.stockExchangeService.getStockExchanges()
       .subscribe(response => {
         this.stockExchanges = response;
-      });
+      }); 
   }
 
   onDeleteClick(id: string) {

@@ -1,7 +1,7 @@
 export interface StockExchange {
   id?: number;
   name?: string;
-  description?: string;
+  brief?: string;
   address?: string;
   remarks?: string;
 }

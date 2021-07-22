@@ -36,13 +36,13 @@ export class CompanyService {
         this.router.navigate(['/companies']);
       });
   }
-
+ 
   updateCompany(company: Company) {
     this.http.put(this.url, company)
       .subscribe(response => {
         this.router.navigate(['/companies']);
       });
-  }
+  } 
 
   deleteCompany(id: string) {
     this.http.delete(this.url + id)

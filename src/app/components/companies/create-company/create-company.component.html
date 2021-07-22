@@ -20,7 +20,7 @@
         <input
           type="text"
           class="form-control"
-          name="companyName"
+          name="name"
           #companyName="ngModel"
           [ngClass]="{'is-invalid': companyName.errors && companyName.touched}"
           [(ngModel)]="company.name"
@@ -39,7 +39,7 @@
         <input
           type="text"
           class="form-control"
-          name="companyTurnover"
+          name="turnover"
           #companyTurnover="ngModel"
           [ngClass]="{'is-invalid': companyTurnover.errors && companyTurnover.touched}"
           [(ngModel)]="company.turnover"
@@ -58,7 +58,7 @@
         <input
           type="text"
           class="form-control"
-          name="companyCeo"
+          name="ceo"
           #companyCeo="ngModel"
           [ngClass]="{'is-invalid': companyCeo.errors && companyCeo.touched}"
           [(ngModel)]="company.ceo"
@@ -96,25 +96,6 @@
         <input
           type="text"
           class="form-control"
-          name="stockExchangeNames"
-          #stockExchangeNames="ngModel"
-          [ngClass]="{'is-invalid': stockExchangeNames.errors && stockExchangeNames.touched}"
-          [(ngModel)]="company.stockExchangeNames"
-          placeholder="Stock Exchanges (seperated by comma)"
-          minlength="2"
-          required>
-        <div [hidden]="!stockExchangeNames.errors?.required" class="invalid-feedback">
-          Stock Exchange Names required
-        </div>
-        <div [hidden]="!stockExchangeNames.errors?.minlength" class="invalid-feedback">
-          Must be atleast 2 characters
-        </div>
-      </div>
-
-      <div class="form-group">
-        <input
-          type="text"
-          class="form-control"
           name="sectorName"
           #sectorName="ngModel"
           [ngClass]="{'is-invalid': sectorName.errors && sectorName.touched}"
@@ -134,7 +115,7 @@
         <input
           type="text"
           class="form-control"
-          name="description"
+          name="companyBrief"
           #description="ngModel"
           [ngClass]="{'is-invalid': description.errors && description.touched}"
           [(ngModel)]="company.companyBrief"

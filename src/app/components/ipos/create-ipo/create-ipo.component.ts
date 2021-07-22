@@ -12,7 +12,6 @@ export class CreateIpoComponent implements OnInit {
 
   ipo: IPO = {
     companyName: '',
-    stockExchangeName: '',
     pricePerShare: 0,
     totalNumberOfShares: 0,
     openDateTime: '',

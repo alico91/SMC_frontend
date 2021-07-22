@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { StockExchange } from '../../../models/StockExchange';
+import { StockExchangeService } from 'src/app/services/stock-exchange.service';
 
 @Component({
   selector: 'app-create-stock-exchange',
@@ -11,12 +12,12 @@ export class CreateStockExchangeComponent implements OnInit {
 
   stockExchange: StockExchange = {
     name: '',
-    description: '',
+    brief: '',
     address: '',
     remarks : ''
   };
 
-  constructor() { }
+  constructor(private stockExchangeService: StockExchangeService) { }
 
   ngOnInit(): void {
   }
@@ -25,5 +26,9 @@ export class CreateStockExchangeComponent implements OnInit {
     if(!valid) {
       
     }
+    else{
+      this.stockExchangeService.addStockExchange(value);
+    }
   }
 }
+ 

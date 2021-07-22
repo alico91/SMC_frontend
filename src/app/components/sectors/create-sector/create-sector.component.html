@@ -16,11 +16,11 @@
     <form #sectorForm="ngForm" (ngSubmit)="onSubmit(sectorForm)">
 
       <div class="form-group">
-        <label for="sectorName">Sector Name</label>
+        <label for="name">Sector Name</label>
         <input
           type="text"
           class="form-control"
-          name="sectorName"
+          name="name"
           #sectorName="ngModel"
           [ngClass]="{'is-invalid': sectorName.errors && sectorName.touched}"
           [(ngModel)]="sector.name"
