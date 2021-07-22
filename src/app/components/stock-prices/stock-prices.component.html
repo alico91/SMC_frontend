@@ -1,0 +1,40 @@
+<table *ngIf="stockPrices?.length>0; else noStockPrices" class="table table-striped">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Company Code</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Exchange Name</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stockPrice of stockPrices">
+        <td>{{ stockPrice.id }}</td>
+        <td>{{ stockPrice.companyCode }}</td>
+        <td>{{ stockPrice.currentPrice }}</td>
+        <td>{{ stockPrice.date }}</td>
+        <td>{{ stockPrice.time }}</td> 
+        <td>{{ stockPrice.exchangeName }}</td>
+        <td>
+          <a routerLink="edit-stock-exchange/{{ stockPrice.id }}" class="btn btn-secondary btn-sm">
+            <i class="fa fa-pencil"></i> Edit
+          </a>
+        </td>
+        <td>
+          <button (click)="onDeleteClick(stockPrice.id)" class="btn btn-secondary btn-sm">
+            <i class="fa fa-trash"></i> Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <ng-template #noStockExchanges>
+    <br>
+    <br>
+    <h5>There are no Stock Price in the system.</h5>
+  </ng-template>
