@@ -10,7 +10,7 @@ describe('CreateStockExchangeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CreateStockExchangeComponent ]
     })
-    .compileComponents();
+    .compileComponents(); 
   }));
 
   beforeEach(() => {

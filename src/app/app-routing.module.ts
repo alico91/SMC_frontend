@@ -18,6 +18,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SectorsComponent } from './components/sectors/sectors.component';
 import { CreateSectorComponent } from './components/sectors/create-sector/create-sector.component';
 import { StockPricesComponent} from './components/stock-prices/stock-prices.component'
+import { MapComStockexComponent } from './components/map-comstockex/map-comstockex.component'
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path: 'import-excel', component: ImportExcelComponent},
   {path: 'stock-prices', component: StockPricesComponent},
   {path: 'comparison-charts', component: ComparisonChartsComponent},
-  {path: '**', component: NotFoundComponent}
+  {path: '**', component: NotFoundComponent},
+  {path: 'map-company-stockex' , component: MapComStockexComponent},
 ];
 
 @NgModule({

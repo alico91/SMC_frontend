@@ -28,6 +28,8 @@ import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 import {Chart} from 'chart.js';
+import { MapComStockexComponent } from './components/map-comstockex/map-comstockex.component';
+import { StockPricesComponent } from './components/stock-prices/stock-prices.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import {Chart} from 'chart.js';
     CreateIpoComponent,
     CreateStockExchangeComponent,
     SectorsComponent,
-    CreateSectorComponent
+    CreateSectorComponent,
+    MapComStockexComponent,
+    StockPricesComponent
   ],
   imports: [
     BrowserModule,

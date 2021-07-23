@@ -23,5 +23,5 @@ export class StockExchangesComponent implements OnInit {
 
   onDeleteClick(id: string) {
     this.stockExchangeService.deleteStockExchange(id);
-  }
+  } 
 }

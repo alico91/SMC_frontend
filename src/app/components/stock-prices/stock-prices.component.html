@@ -1,3 +1,8 @@
+<hr>
+<a routerLink="/import-excel" class="btn btn-primary">Import Data</a>
+<br>
+<br>
+
 <table *ngIf="stockPrices?.length>0; else noStockPrices" class="table table-striped">
     <thead class="thead-inverse thead-dark">
       <tr>
@@ -33,7 +38,7 @@
     </tbody>
   </table>
   
-  <ng-template #noStockExchanges>
+  <ng-template #noStockPrices>
     <br>
     <br>
     <h5>There are no Stock Price in the system.</h5>

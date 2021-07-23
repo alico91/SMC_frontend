@@ -3,6 +3,7 @@ export interface StockPrice {
   companyCode?: string;
   exchangeName?: string;
   price?: number;
-  date?: string;
+  date?: Date;
   time?: string;
+
 }

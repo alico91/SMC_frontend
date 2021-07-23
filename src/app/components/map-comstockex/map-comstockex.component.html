@@ -1,0 +1,68 @@
+<div class="card">
+    <div class="card-header">
+      Add Mapping Company to Stock Exchange
+    </div>
+    <div class="card-body">
+      <form #mapComStockexForm="ngForm" (ngSubmit)="onSubmit(mapComStockexForm)">
+  
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="companyCode" 
+            #companyCode="ngModel"
+            [ngClass]="{'is-invalid': companyCode.errors && companyCode.touched}"
+            [(ngModel)]="mapComStockex.companyCode"
+            placeholder="Company Code"
+            minlength="2"
+            required>
+          <div [hidden]="!companyCode.errors?.required" class="invalid-feedback">
+            Stock Exchange name required
+          </div>
+          <div [hidden]="!companyCode.errors?.minlength" class="invalid-feedback">
+            Must be atleast 2 characters
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="companyName"
+            #companyName="ngModel"
+            [ngClass]="{'is-invalid': companyName.errors && companyName.touched}"
+            [(ngModel)]="mapComStockex.companyName"
+            placeholder="Company Name"
+            minlength="2"
+            required>
+          <div [hidden]="!companyName.errors?.required" class="invalid-feedback">
+            Description for the Stock Exchange required
+          </div>
+          <div [hidden]="!companyName.errors?.minlength" class="invalid-feedback">
+            Must be atleast 2 characters
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="stockExchangeName"
+            #stockExchangeName="ngModel"
+            [ngClass]="{'is-invalid': stockExchangeName.errors && stockExchangeName.touched}"
+            [(ngModel)]="mapComStockex.stockExchangeName"
+            placeholder="Stock Exchange Name"
+            minlength="2"
+            required>
+          <div [hidden]="!stockExchangeName.errors?.required" class="invalid-feedback">
+            Contact Address for the Stock Exchange required
+          </div>
+          <div [hidden]="!stockExchangeName.errors?.minlength" class="invalid-feedback">
+            Must be atleast 2 characters
+          </div>
+        </div>
+  
+        <input type="submit" value="Submit" class="btn btn-primary btn-block">
+      </form>
+    </div>
+  </div>

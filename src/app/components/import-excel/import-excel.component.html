@@ -1,41 +1,50 @@
-<div>
-  <div *ngIf="!isUploaded" class="col-md-8 form-group">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Upload</span>
+<div class="row align-items-center align-self-center justify-content-center">
+  <mat-card fxFlex="30" >
+  <div class="form" fxLayoutAlign="center center" fxLayout="column">
+      <input type="file" class="file-input"
+      (change)="onFileSelect($event)" #fileUpload>
+      
+      <div class="file-upload">
+          <span>
+          {{fileName || "No file uploaded yet."}}
+      </span>
+          <button mat-mini-fab class="upload-btn"
+          (click)="fileUpload.click()">
+          <mat-icon>attach_file</mat-icon>
+      </button>
       </div>
-      <div class="custom-file">
-        <input
-          type="file"
-          class="form-control"
-          (change)="onUpload($event)"
-          placeholder="Upload file"
-          id="excel"
-          accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-        <label class="custom-file-label" for="excel">Choose file</label>
-      </div>
-    </div><br><br>
-    <a href="../../../assets/sample_stock_data.xlsx">Click here to download sample excel file.</a>
+      
+      <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+          <button mat-raised-button class="btn btn-primary" type="submit">Upload</button>
+      </form>
   </div>
-
-  <div *ngIf="isUploaded" class="card" style="width: 20rem;">
-    <img class="card-img-top" src="../../../assets/stocks.jpg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">Summary of Upload</h5>
-      <p class="card-text">Your input stock price data is successfully uploaded.</p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Company Code : {{ companyCode }}</li>
-      <li class="list-group-item">Stock Exchange : {{ stockExchangeName }}</li>
-      <li class="list-group-item">No. of Records Imported : {{ numberOfRecords }}</li>
-      <li class="list-group-item">From Date : {{ fromDate }}</li>
-      <li class="list-group-item">To Date : {{ toDate }}</li>
-    </ul>
-    <div class="card-body">
-      <button (click)="importAgain()" class="card-link">Upload More Data</button>
-      <a routerLink="/stock-prices" class="card-link">Stock Price List</a>
-    </div>
+  </mat-card>
   </div>
-</div>
-
-
+  
+  
+  
+  
+  <div *ngIf="hasData" class="row">
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Company Code</th>
+        <th scope="col">Exchange</th>
+        <th scope="col">Price Per Share</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let s of stockPrice">
+        
+        <td>{{s.companyCode}}</td>
+        <td>{{s.exchangeName}}</td>
+        <td>{{s.price}}</td>
+        <td>{{s.date| date}}</td>
+        <td>{{s.time}}</td>
+  
+      </tr>
+    </tbody>
+  </table>
+  </div>
