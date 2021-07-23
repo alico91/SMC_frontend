@@ -4,6 +4,7 @@ import { FormBuilder,FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { StockPrice } from '../../models/StockPrice';
 import * as XLSX from 'xlsx';
+import { StockPriceService } from 'src/app/services/stock-price.service';
 
 @Component({
   selector: 'app-import-excel',
@@ -23,7 +24,7 @@ export class ImportExcelComponent implements OnInit {
   // displayedColumns: string[] = ['companyCode', 'stockExchange', 'pricePerShare','date','time'];
 
 
-  constructor(private _snackBar: MatSnackBar,private formBuilder: FormBuilder, private httpClient: HttpClient) { }
+  constructor(private stockPriceService : StockPriceService, private formBuilder: FormBuilder, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.uploadForm = this.formBuilder.group({
@@ -31,11 +32,6 @@ export class ImportExcelComponent implements OnInit {
     });
   }
   get f() { return this.uploadForm.controls; }
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
-
 
   onFileSelect(event:any) {
     
@@ -55,10 +51,10 @@ export class ImportExcelComponent implements OnInit {
         const wsname: string = wb.SheetNames[0];
         const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
-        const data = XLSX.utils.sheet_to_json(ws, { header:1,raw:false,dateNF:'yyyy-mm-dd'});
+        const data = XLSX.utils.sheet_to_json(ws, { header:1,raw:false,dateNF:'dd-mm-yyyy'});
 
         const importData = <String[][]>data.slice(1,-1);
-        // console.log(importData);
+        console.log(importData);
         importData.forEach( i => {
           var sp: StockPrice;
           sp.companyCode = i[0].trim();
@@ -68,15 +64,11 @@ export class ImportExcelComponent implements OnInit {
           sp.time = i[4].trim();
           this.stockPrice.push(sp);
         });
-
+        this.stockPriceService.addStockPriceList(this.stockPrice);
         // console.log(this.stockPrice);
         this.hasData = true;
       }
-
-
     }
-
-
   }
 
   stringToDate(date : string): Date{
@@ -92,12 +84,10 @@ export class ImportExcelComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.f.profile.value);
 
-
-
     this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     );
-    this.openSnackBar("excel file uploaded","success");
+
   }
 }

@@ -1,24 +1,25 @@
-<div class="row align-items-center align-self-center justify-content-center">
-  <mat-card fxFlex="30" >
-  <div class="form" fxLayoutAlign="center center" fxLayout="column">
-      <input type="file" class="file-input"
-      (change)="onFileSelect($event)" #fileUpload>
-      
-      <div class="file-upload">
-          <span>
-          {{fileName || "No file uploaded yet."}}
-      </span>
-          <button mat-mini-fab class="upload-btn"
-          (click)="fileUpload.click()">
-          <mat-icon>attach_file</mat-icon>
-      </button>
+<div>
+  <div class="row align-items-center align-self-center justify-content-center">
+    <div >
+      <div class="form">
+        <input type="file" class="file-input"
+        (change)="onFileSelect($event)" #fileUpload>
+        
+        <div class="file-upload">
+            <span>
+              {{fileName || "No file uploaded yet."}}
+            </span>
+            <button class="upload-btn"
+              (click)="fileUpload.click()">
+            </button>
+        </div>
+        
+        <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+            <button class="btn btn-primary" type="submit">Upload</button>
+        </form>
       </div>
-      
-      <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
-          <button mat-raised-button class="btn btn-primary" type="submit">Upload</button>
-      </form>
-  </div>
-  </mat-card>
+      <a href="../../../assets/sample_stock_data.xlsx">Click here to download sample excel file.</a>
+    </div>
   </div>
   
   
@@ -48,3 +49,4 @@
     </tbody>
   </table>
   </div>
+</div>
