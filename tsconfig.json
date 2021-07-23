@@ -8,6 +8,7 @@
   "files": [],
   "emitDecoratorMetadata": true,
   "experimentalDecorators": true,
+  "enableIvy":false,
   "references": [
     {
       "path": "./tsconfig.app.json"
