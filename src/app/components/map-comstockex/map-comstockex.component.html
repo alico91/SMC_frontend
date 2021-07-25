@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
       Add Mapping Company to Stock Exchange
-    </div>
+    </div> 
     <div class="card-body">
       <form #mapComStockexForm="ngForm" (ngSubmit)="onSubmit(mapComStockexForm)">
   
@@ -17,7 +17,7 @@
             minlength="2"
             required>
           <div [hidden]="!companyCode.errors?.required" class="invalid-feedback">
-            Stock Exchange name required
+            Company Code Required required
           </div>
           <div [hidden]="!companyCode.errors?.minlength" class="invalid-feedback">
             Must be atleast 2 characters
@@ -36,7 +36,7 @@
             minlength="2"
             required>
           <div [hidden]="!companyName.errors?.required" class="invalid-feedback">
-            Description for the Stock Exchange required
+            Company Name required
           </div>
           <div [hidden]="!companyName.errors?.minlength" class="invalid-feedback">
             Must be atleast 2 characters
@@ -55,7 +55,7 @@
             minlength="2"
             required>
           <div [hidden]="!stockExchangeName.errors?.required" class="invalid-feedback">
-            Contact Address for the Stock Exchange required
+            Stock Exchange Name required
           </div>
           <div [hidden]="!stockExchangeName.errors?.minlength" class="invalid-feedback">
             Must be atleast 2 characters

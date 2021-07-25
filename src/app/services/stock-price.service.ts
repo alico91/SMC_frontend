@@ -26,8 +26,9 @@ export class StockPriceService {
   }
 
   addStockPriceList(stockPrices: StockPrice[]) {
-    this.http.post<StockPrice[]>(this.url, stockPrices)
+    this.http.post<StockPrice[]>(this.url , stockPrices)
       .subscribe(response => response);
+     
   }
 
   updateStockPrice(stockPrice: StockPrice) {

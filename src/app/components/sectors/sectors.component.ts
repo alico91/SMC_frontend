@@ -19,7 +19,7 @@ export class SectorsComponent implements OnInit {
       .subscribe(response => {
         this.sectors = response;
       });
-  }
+  } 
 
   onDeleteClick(id: string) {
     this.sectorService.deleteSector(id);

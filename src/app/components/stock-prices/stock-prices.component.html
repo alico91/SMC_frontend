@@ -12,8 +12,6 @@
         <th>Date</th>
         <th>Time</th>
         <th>Exchange Name</th>
-        <th></th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -24,16 +22,6 @@
         <td>{{ stockPrice.date }}</td>
         <td>{{ stockPrice.time }}</td> 
         <td>{{ stockPrice.exchangeName }}</td>
-        <td>
-          <a routerLink="edit-stock-exchange/{{ stockPrice.id }}" class="btn btn-secondary btn-sm">
-            <i class="fa fa-pencil"></i> Edit
-          </a>
-        </td>
-        <td>
-          <button (click)="onDeleteClick(stockPrice.id)" class="btn btn-secondary btn-sm">
-            <i class="fa fa-trash"></i> Delete
-          </button>
-        </td>
       </tr>
     </tbody>
   </table>

@@ -36,7 +36,7 @@ export class ComparisonChartsComponent implements OnInit {
       this.stockPriceService.getCompanyStockPrices(value)
         .subscribe(response => {
           console.log(response);
-          let prices = response.map(res => res.price);
+          let prices = response.map(res => res.currentPrice);
           let dates = response.map(res => res.date);
           console.log(prices);
           console.log(dates);

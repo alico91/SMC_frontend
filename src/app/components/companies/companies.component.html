@@ -32,6 +32,34 @@
   </tbody>
 </table>
 
+<hr>
+<br>
+<a routerLink="/map-company-stockex" class="btn btn-primary">Map Company to a Stock Exchange</a>
+<br>
+<br>
+
+<table *ngIf="mapComStockexs?.length>0; else nomapComStockexs" class="table table-striped">
+  <thead class="thead-inverse thead-dark">
+    <tr>
+      <th>Company Code </th>
+      <th>Company Name </th>
+      <th>Stock Exchange Name </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of mapComStockexs">
+      <td>{{ company.companyCode }}</td>
+      <td>{{ company.companyName}}</td>
+      <td>{{ company.stockExchangeName }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
 <ng-template #noCompanies>
   <h5>There are no clients in the system.</h5>
+</ng-template>
+
+<ng-template #nomapComStockexs>
+  <h5>There are no mappings in the system.</h5>
 </ng-template>

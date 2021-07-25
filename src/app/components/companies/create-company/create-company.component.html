@@ -81,7 +81,7 @@
           #boardOfDirectors="ngModel"
           [ngClass]="{'is-invalid': boardOfDirectors.errors && boardOfDirectors.touched}"
           [(ngModel)]="company.boardOfDirectors"
-          placeholder="Board Of Directors (seperated by comma)"
+          placeholder="Board Of Directors"
           minlength="2"
           required>
         <div [hidden]="!boardOfDirectors.errors?.required" class="invalid-feedback">
@@ -104,12 +104,26 @@
           minlength="2"
           required>
         <div [hidden]="!sectorName.errors?.required" class="invalid-feedback">
-          Sector name required
+          Sector of Company required
         </div>
         <div [hidden]="!sectorName.errors?.minlength" class="invalid-feedback">
           Must be atleast 2 characters
         </div>
       </div>
+
+      <!-- <div class="form-group">
+        <select
+          type="text"
+          class="form-control"
+          name="sectorName"
+          #sectorName="ngModel"
+          [(ngModel)]="company.sectorName"
+          required>
+          <option disabled value="">Choose Sector</option>
+          <option *ngFor="let sectorname of sectorNames" [ngValue]="sectorname">{{sectorname}}</option>
+          
+        </select>
+      </div> -->
 
       <div class="form-group">
         <input

@@ -34,9 +34,10 @@ const routes: Routes = [
   {path: 'create-sector', component: CreateSectorComponent},
   {path: 'import-excel', component: ImportExcelComponent},
   {path: 'stock-prices', component: StockPricesComponent},
+  {path: 'map-company-stockex' , component: MapComStockexComponent},
   {path: 'comparison-charts', component: ComparisonChartsComponent},
   {path: '**', component: NotFoundComponent},
-  {path: 'map-company-stockex' , component: MapComStockexComponent},
+  
 ];
 
 @NgModule({

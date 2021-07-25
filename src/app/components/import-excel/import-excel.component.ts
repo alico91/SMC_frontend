@@ -1,7 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { StockPrice } from '../../models/StockPrice';
 import * as XLSX from 'xlsx';
 import { StockPriceService } from 'src/app/services/stock-price.service';
@@ -12,82 +9,63 @@ import { StockPriceService } from 'src/app/services/stock-price.service';
   styleUrls: ['./import-excel.component.css']
 })
 export class ImportExcelComponent implements OnInit {
-  file!: File;
-  SERVER_URL = "http://localhost:8080/import-excel";
-  uploadForm: FormGroup = new FormGroup({});
-  fileName: any;
+  
+  file: File;
+  arrayBuffer: any;
+  fileList: any;
+  numberOfRecords: number;
+  stockPrices: StockPrice[] = [];
+  stockPrice: StockPrice;
+  isUploaded: boolean = false;
+  companyCode: string;
+  stockExchangeName: string;
+  fromDate: string;
+  toDate: string;
 
-
-
-  hasData: boolean = false;
-  stockPrice:StockPrice[]=[];
-  // displayedColumns: string[] = ['companyCode', 'stockExchange', 'pricePerShare','date','time'];
-
-
-  constructor(private stockPriceService : StockPriceService, private formBuilder: FormBuilder, private httpClient: HttpClient) { }
+  constructor(private stockPriceService: StockPriceService) { }
 
   ngOnInit(): void {
-    this.uploadForm = this.formBuilder.group({
-      profile: ['']
-    });
   }
-  get f() { return this.uploadForm.controls; }
 
-  onFileSelect(event:any) {
-    
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.f.profile.setValue(file);
-      this.fileName = file.name;
-
-      const reader: FileReader = new FileReader();
-      reader.readAsBinaryString(file);
-
-      reader.onload = (e: any) => {
-        const binarystr = e.target.result;
-
-        const wb: XLSX.WorkBook = XLSX.read(binarystr, { type: 'binary',cellText:false,cellDates:true});
-
-        const wsname: string = wb.SheetNames[0];
-        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
-
-        const data = XLSX.utils.sheet_to_json(ws, { header:1,raw:false,dateNF:'dd-mm-yyyy'});
-
-        const importData = <String[][]>data.slice(1,-1);
-        console.log(importData);
-        importData.forEach( i => {
-          var sp: StockPrice;
-          sp.companyCode = i[0].trim();
-          sp.exchangeName = i[1].trim();
-          sp.price = parseFloat(i[2].trim());
-          sp.date = this.stringToDate( i[3].trim());
-          sp.time = i[4].trim();
-          this.stockPrice.push(sp);
-        });
-        this.stockPriceService.addStockPriceList(this.stockPrice);
-        // console.log(this.stockPrice);
-        this.hasData = true;
+  onUpload(event) {
+    this.file= event.target.files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsArrayBuffer(this.file);
+    fileReader.onload = (e) => {
+      this.arrayBuffer = fileReader.result;
+      var data = new Uint8Array(this.arrayBuffer);
+      var arr = new Array();
+      for(var i = 0; i != data.length; ++i) {
+        arr[i] = String.fromCharCode(data[i]);
       }
+      var bstr = arr.join("");
+      var workbook = XLSX.read(bstr, {type:"binary"});
+      var first_sheet_name = workbook.SheetNames[0];
+      var worksheet = workbook.Sheets[first_sheet_name];
+      var records = XLSX.utils.sheet_to_json(worksheet,{raw:true});
+      this.numberOfRecords = records.length;
+      console.log(this.numberOfRecords);
+      records.filter(record => {
+        this.stockPrice = {
+          companyCode: record["companyCode"],
+          exchangeName: record["exchangeName"],
+          currentPrice: record["currentPrice"],
+          date: record["date"].trim(),
+          time: record["time"]
+        }
+        this.stockPrices.push(this.stockPrice);
+      });
+      console.log(JSON.stringify(this.stockPrices));
+      this.companyCode = this.stockPrices[0].companyCode;
+      this.stockExchangeName = this.stockPrices[0].exchangeName;
+      this.fromDate = this.stockPrices[0].date;
+      this.toDate = this.stockPrices[this.numberOfRecords-1].date;
+      this.isUploaded = true;
+      this.stockPriceService.addStockPriceList(this.stockPrices);
     }
+    
   }
-
-  stringToDate(date : string): Date{
-      var parts =date.split('-');
-      var day=parseInt(parts[2]);
-      var year=parseInt(parts[0]);
-      var month=parseInt(parts[1]);
-          month-=1;
-      return new Date(year, month, day);
-  }
-
-  onSubmit() {
-    const formData = new FormData();
-    formData.append('file', this.f.profile.value);
-
-    this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
-    );
-
+  importAgain() {
+    this.isUploaded = false;
   }
 }
