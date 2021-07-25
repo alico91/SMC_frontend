@@ -29,7 +29,7 @@ export class ComparisonChartsComponent implements OnInit {
 
   onSubmit({value, valid}: {value: Comparison, valid: boolean}) {
     if(!valid) {
-
+      console.log("Error in chart values")
     }
     else {
       console.log(value);
@@ -57,7 +57,8 @@ export class ComparisonChartsComponent implements OnInit {
             },
             options: {
               legend: {
-                display: false
+                display: false,
+                position: 'top',
               },
               scales: {
                 xAxes: [{

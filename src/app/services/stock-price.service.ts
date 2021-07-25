@@ -45,12 +45,12 @@ export class StockPriceService {
       });
   }
 
-  getCompanyStockPrices(comparsion: Comparison) {
-    return this.http.post<StockPrice[]>(this.url + "/compareCompany", comparsion);
+  getCompanyStockPrices(comparison: Comparison) {
+    return this.http.post<StockPrice[]>(this.url + "/compareCompany", comparison);
   }
 
-  getSectorStockPrices(comparsion: Comparison) {
-    return this.http.post<StockPrice[]>(this.url + "/compareSector", comparsion);
+  getSectorStockPrices(comparison: Comparison) {
+    return this.http.post<StockPrice[]>(this.url + "/compareSector", comparison);
   }
 }
 
