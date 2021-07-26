@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     username: '',
     password: '',
     email: '',
-    mobile: ''
+    role: ''
   };
 
   constructor(private flashMessage: FlashMessagesService, private authService: AuthService) { }
@@ -37,6 +37,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
     this.authService.createUser(value);
+    console.log(value);
   }
   ngOnDestroy(): void {
     this.authStatusSubs.unsubscribe();

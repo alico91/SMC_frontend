@@ -43,15 +43,16 @@ export class ImportExcelComponent implements OnInit {
       var first_sheet_name = workbook.SheetNames[0];
       var worksheet = workbook.Sheets[first_sheet_name];
       var records = XLSX.utils.sheet_to_json(worksheet,{raw:true});
+      
       this.numberOfRecords = records.length;
       console.log(this.numberOfRecords);
       records.filter(record => {
         this.stockPrice = {
-          companyCode: record["companyCode"],
-          exchangeName: record["exchangeName"],
-          currentPrice: record["currentPrice"],
-          date: record["date"].trim(),
-          time: record["time"]
+          companyCode: record["Company Code"],
+          exchangeName: record["Stock Exchange"],
+          currentPrice: record["Price Per Share(in Rs)"],
+          date: record["Date"],
+          time: record["Time"]
         }
         this.stockPrices.push(this.stockPrice);
       });

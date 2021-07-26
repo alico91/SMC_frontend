@@ -41,11 +41,11 @@ export class AuthService {
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
-
+ 
   createUser(user: User) {
     return this.http.post(BACKEND_URL + '/signup', user)
       .subscribe(() => {
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/login']);
       }, error => {
         this.authStatusListener.next(false);
       });

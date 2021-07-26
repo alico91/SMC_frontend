@@ -40,10 +40,10 @@
         <input
           type="text"
           class="form-control"
-          name="name"
+          name="companyName"
           #name="ngModel"
           [ngClass]="{'is-invalid': name.errors && name.touched}"
-          [(ngModel)]="comparison.name"
+          [(ngModel)]="comparison.companyName"
           placeholder="Company Name"
           minlength="2"
           required>

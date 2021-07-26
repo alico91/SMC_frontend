@@ -46,11 +46,11 @@ export class StockPriceService {
   }
 
   getCompanyStockPrices(comparison: Comparison) {
-    return this.http.post<StockPrice[]>(this.url + "/compareCompany", comparison);
+    return this.http.post<StockPrice[]>(this.url + "compareCompany", comparison);
   }
 
   getSectorStockPrices(comparison: Comparison) {
-    return this.http.post<StockPrice[]>(this.url + "/compareSector", comparison);
+    return this.http.post<StockPrice[]>(this.url + "compareSector", comparison);
   }
 }
 

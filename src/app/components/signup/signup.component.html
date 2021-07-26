@@ -67,23 +67,17 @@
           </div>
 
           <div class="form-group">
-            <input
+            <label for="role">Select Role</label>
+            <select
               type="text"
               class="form-control"
-              name="mobile"
-              placeholder="Mobile Number"
-              #mobile="ngModel"
-              [ngClass]="{'is-invalid': mobile.errors && mobile.touched}"
-              [(ngModel)]="user.mobile"
-              minlength="10"
-              maxlength="10"
+              name="role"
+              #role="ngModel"
+              [(ngModel)]="user.role"
               required>
-            <div [hidden]="!mobile.errors?.required" class="invalid-feedback">
-              Mobile number required
-            </div>
-            <div [hidden]="!mobile.errors?.minlength && !mobile.errors?.maxlength" class="invalid-feedback">
-              Invalid Mobile Number
-            </div>
+              <option value="Admin">Admin</option>
+              <option value="User">User</option>
+            </select>
           </div>
 
           <input type="submit" value="Submit" class="btn btn-primary btn-block">

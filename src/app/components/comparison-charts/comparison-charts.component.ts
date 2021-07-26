@@ -15,7 +15,7 @@ export class ComparisonChartsComponent implements OnInit {
   //show: boolean = false;
 
   comparison: Comparison = {
-    name: '',
+    companyName: '',
     stockExchangeName: '',
     fromPeriod: '',
     toPeriod: '',
@@ -51,7 +51,7 @@ export class ComparisonChartsComponent implements OnInit {
                 {
                   data: prices,
                   borderColor: "#3cba9f",
-                  fill: false
+                  label: 'Price'
                 },,
               ]
             },
@@ -61,9 +61,6 @@ export class ComparisonChartsComponent implements OnInit {
                 position: 'top',
               },
               scales: {
-                xAxes: [{
-                  display: true
-                }],
                 yAxes: [{
                   display: true
                 }],

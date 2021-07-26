@@ -1,5 +1,5 @@
 export interface Comparison {
-  name?: string;
+  companyName?: string;
   stockExchangeName?: string;
   fromPeriod?: string;
   toPeriod?: string;
