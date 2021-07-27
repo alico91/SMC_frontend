@@ -4,7 +4,7 @@
 <br>
 
 <table *ngIf="ipos?.length>0; else noIpos" class="table table-striped">
-  <thead class="thead-inverse thead-dark">
+  <thead class="table-primary">
     <tr>
       <th>Company Name</th>
       <!-- <th>Stock Exchange</th> -->
@@ -28,7 +28,7 @@
         </a>
       </td>
       <td>
-        <button (click)="onDeleteClick(ipo.id)" class="btn btn-secondary btn-sm">
+        <button (click)="onDeleteClick(ipo.id)" class="btn btn-outline-danger">
           <i class="fa fa-trash"></i> Delete
         </button>
       </td>

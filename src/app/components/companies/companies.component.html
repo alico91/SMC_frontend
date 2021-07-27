@@ -4,7 +4,7 @@
 <br>
 
 <table *ngIf="companies?.length>0; else noCompanies" class="table table-striped">
-  <thead class="thead-inverse thead-dark">
+  <thead class="table-primary">
     <tr>
       <th>Company Name </th>
       <th>Sector </th>
@@ -24,7 +24,7 @@
         </a>
       </td>
       <td>
-        <button (click)="onDeleteClick(company.id)" class="btn btn-secondary btn-sm">
+        <button (click)="onDeleteClick(company.id)" class="btn btn-outline-danger">
           <i class="fa fa-trash"></i> Delete
         </button>
       </td>
@@ -39,7 +39,7 @@
 <br>
 
 <table *ngIf="mapComStockexs?.length>0; else nomapComStockexs" class="table table-striped">
-  <thead class="thead-inverse thead-dark">
+  <thead class="table-primary">
     <tr>
       <th>Company Code </th>
       <th>Company Name </th>

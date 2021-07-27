@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
-
+import { StockPrice } from 'src/app/models/StockPrice';
 import { Comparison } from '../../models/Comparison';
 import { StockPriceService } from '../../services/stock-price.service';
 
@@ -12,7 +12,6 @@ import { StockPriceService } from '../../services/stock-price.service';
 export class ComparisonChartsComponent implements OnInit {
 
   chart: any = [];
-  //show: boolean = false;
 
   comparison: Comparison = {
     companyName: '',
@@ -21,6 +20,7 @@ export class ComparisonChartsComponent implements OnInit {
     toPeriod: '',
     periodicity: ''
   }
+  stockprices: StockPrice[];
 
   constructor(private stockPriceService: StockPriceService, private elementRef: ElementRef) { }
 
@@ -34,10 +34,11 @@ export class ComparisonChartsComponent implements OnInit {
     else {
       console.log(value);
       this.stockPriceService.getCompanyStockPrices(value)
-        .subscribe(response => {
+        .subscribe((response) => {
           console.log(response);
-          let prices = response.map(res => res.currentPrice);
-          let dates = response.map(res => res.date);
+          let prices = response.map((res) => res.currentPrice);
+          let dates = response.map((res) => res.date);
+          let times = response.map((res)=> res.time);
           console.log(prices);
           console.log(dates);
           //this.show = true;
@@ -46,29 +47,38 @@ export class ComparisonChartsComponent implements OnInit {
           this.chart = new Chart(htmlRef, {
             type: 'line',
             data: {
-              labels: dates,
+              labels: times,
               datasets: [
                 {
+                  label: 'Price',
+                  backgroundColor: 'rgba(0, 129, 214, 0.8)',
                   data: prices,
-                  borderColor: "#3cba9f",
-                  label: 'Price'
-                },,
-              ]
+                  fill: false,
+                  borderColor: "#3e95cd",
+                },
+              ],
             },
             options: {
+              title: {
+                display: true,
+                text: 'Stock Price Data Chart'
+              },
               legend: {
                 display: false,
                 position: 'top',
+                
               },
               scales: {
-                yAxes: [{
-                  display: true
-                }],
-              }
-            }
+                yAxes: [
+                  {
+                    display: true,
+                  },
+                ],
+              },
+            },
           });
-          console.log(this.chart);
         });
+      console.log(this.chart);
     }
   }
 
