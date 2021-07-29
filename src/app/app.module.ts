@@ -30,6 +30,7 @@ import { AuthInterceptor } from './interceptors/auth-interceptor';
 import {Chart} from 'chart.js';
 import { MapComStockexComponent } from './components/map-comstockex/map-comstockex.component';
 import { StockPricesComponent } from './components/stock-prices/stock-prices.component';
+import { EditCompanyComponent } from './components/companies/edit-company/edit-company.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { StockPricesComponent } from './components/stock-prices/stock-prices.com
     LoginComponent,
     SignupComponent,
     CreateCompanyComponent,
+    EditCompanyComponent,
     CompaniesComponent,
     StockExchangesComponent,
     ImportExcelComponent,

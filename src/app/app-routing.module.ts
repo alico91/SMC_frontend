@@ -19,6 +19,8 @@ import { SectorsComponent } from './components/sectors/sectors.component';
 import { CreateSectorComponent } from './components/sectors/create-sector/create-sector.component';
 import { StockPricesComponent} from './components/stock-prices/stock-prices.component'
 import { MapComStockexComponent } from './components/map-comstockex/map-comstockex.component'
+import { EditCompanyComponent} from './components/companies/edit-company/edit-company.component'
+
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -26,6 +28,7 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'companies', component: CompaniesComponent},
   {path: 'create-company', component: CreateCompanyComponent},
+  {path: 'edit-company', component: EditCompanyComponent},
   {path: 'ipos', component: IposComponent},
   {path: 'create-ipo', component: CreateIpoComponent},
   {path: 'stock-exchanges', component: StockExchangesComponent},
